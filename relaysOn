@@ -1,0 +1,21 @@
+#!/bin/sh
+
+
+#port 22 is the hot relay
+#port 27 is the cold relay
+arg="$1"
+
+if [ "$arg" = "COLD" ] ; then
+    echo 1 > /sys/class/gpio/gpio27/value
+    echo "relay on cold"
+elif [ "$arg" = "HOT" ] ; then
+    echo 1 > /sys/class/gpio/gpio22/value
+    echo "relay on hot"
+elif [ "$arg" = "COLD_AND_HOT" ] ; then
+        echo 1 > /sys/class/gpio/gpio22/value
+        echo 1 > /sys/class/gpio/gpio27/value
+        echo "relay on cold and hot"
+else
+    echo “Wrong argument value.Use values HOT , COLD or COLD_AND_HOT”
+
+fi
